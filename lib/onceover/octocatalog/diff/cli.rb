@@ -157,7 +157,7 @@ revisions to compare between.
 
                     # TODO: Improve the way this works so that it doesn't blat site.pp
                     # Update site.pp
-                    logger.debug "Updaing site.pp in from control-repo"
+                    logger.debug "Updating site.pp in from control-repo"
                     class_name = test.classes[0].name
                     control_repos = [fromdir, todir]
 
