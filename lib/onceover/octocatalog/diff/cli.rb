@@ -124,7 +124,7 @@ revisions to compare between.
               end
 
               # Deploy Puppetfile in from
-              logger.info "Deploying Puppetfile for from branch"
+              logger.info "Deploying Puppetfile for #{opts[:from]} branch"
               r10k_cmd = "r10k puppetfile install --verbose --color --puppetfile #{frompuppetfile} --config #{r10k_cache_dir_from}/r10k.yaml"
               Open3.popen3(r10k_cmd, :chdir => fromdir) do |stdin, stdout, stderr, wait_thr|
                 exit_status = wait_thr.value
@@ -136,7 +136,7 @@ revisions to compare between.
               end
 
               # Deploy Puppetfile in to
-              logger.info "Deploying Puppetfile for to branch"
+              logger.info "Deploying Puppetfile for #{opts[:to]} branch"
               r10k_cmd = "r10k puppetfile install --verbose --color --puppetfile #{topuppetfile} --config #{r10k_cache_dir_to}/r10k.yaml"
               Open3.popen3(r10k_cmd, :chdir => todir) do |stdin, stdout, stderr, wait_thr|
                 exit_status = wait_thr.value
