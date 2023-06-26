@@ -92,7 +92,8 @@ class Onceover
                 'sources' => {
                   'default' => {
                     #'remote' => repo.root,
-                    'remote' => @git_remote[0][:stdout],
+                    #'remote' => @git_remote[0][:stdout],
+                    'remote' => 'git@github.com:chambersmp/control-repo.git',
                     'basedir' => environment_dir,
                     'invalid_branches' => 'correct_and_warn'
                   },
