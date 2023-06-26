@@ -87,12 +87,12 @@ class Onceover
               logger.debug 'Creating a common r10k cache'
               # Cache dir no longer needed
               r10k_config = {
-                # 'cachedir' => r10k_cache_dir,
-                'cachedir' => environment_dir,
+                'cachedir' => r10k_cache_dir,
+                #'cachedir' => environment_dir,
                 'sources' => {
                   'default' => {
-                    'remote' => repo.root,
-                    # 'remote' => @git_remote[:stdout],
+                    #'remote' => repo.root,
+                    'remote' => @git_remote[0][:stdout],
                     'basedir' => environment_dir,
                     'invalid_branches' => 'correct_and_warn'
                   },
