@@ -290,7 +290,7 @@ class Onceover
                 puts "#{'Errors:'.bold}\n#{result[:stderr]}\n" if result[:exit_status] == 1
                 puts ''
               end
-
+              sleep (120)
               logger.info 'Cleanup temp environment directories'
               logger.debug "Processing removal: #{fromdir}"
               #FileUtils.rm_r(fromdir)
