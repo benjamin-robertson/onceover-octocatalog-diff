@@ -29,7 +29,7 @@ class Onceover
             flag nil, :display_source, 'Display the source class filename and line number for diffs'
             option :f,  :from, 'Branch to compare from', argument: :required
             option :t,  :to,   'Branch to compare to', argument: :required
-            option :k,  :private_key,   'Private key used to access private repo', argument: :required
+            option :k,  :private_key,   'Private key used to access private repo', argument: :optional
 
             run do |opts, args, cmd|
               require 'facter'
