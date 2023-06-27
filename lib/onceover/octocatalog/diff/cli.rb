@@ -94,7 +94,7 @@ class Onceover
                     #'remote' => repo.root,
                     #'remote' => @git_remote[0][:stdout],
                     'remote' => 'git@github.com:chambersmp/control-repo.git',
-                    # 'private_key' => '/root/.ssh/id_ed25519',
+                    'private_key' => '/root/.ssh/id_ed25519',
                     'basedir' => environment_dir,
                     'invalid_branches' => 'correct_and_warn'
                   },
