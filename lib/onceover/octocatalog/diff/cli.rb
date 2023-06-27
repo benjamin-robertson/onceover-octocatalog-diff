@@ -29,7 +29,6 @@ class Onceover
             flag nil, :display_source, 'Display the source class filename and line number for diffs'
             option :f,  :from, 'Branch to compare from', argument: :required
             option :t,  :to,   'Branch to compare to', argument: :required
-            option :k,  :private_key,   'Private key used to access private repo', argument: :optional
 
             run do |opts, args, cmd|
               require 'facter'
@@ -95,7 +94,7 @@ class Onceover
                     #'remote' => repo.root,
                     #'remote' => @git_remote[0][:stdout],
                     'remote' => 'git@github.com:chambersmp/control-repo.git',
-                    'private_key' => opts[:private_key],
+                    'private_key' => ENV['CD4PE_SECRET_R10K_PRIVATE_KEY'],
                     'basedir' => environment_dir,
                     'invalid_branches' => 'correct_and_warn'
                   },
