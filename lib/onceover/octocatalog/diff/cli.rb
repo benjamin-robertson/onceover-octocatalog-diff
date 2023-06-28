@@ -92,9 +92,9 @@ class Onceover
                 'sources' => {
                   'default' => {
                     #'remote' => repo.root,
-                    #'remote' => @git_remote[0][:stdout],
-                    'remote' => 'git@github.com:chambersmp/control-repo.git',
-                    'private_key' => '/root/.ssh/id_ed25519',
+                    'remote' => @git_remote[0][:stdout],
+                    #'remote' => 'git@github.com:chambersmp/control-repo.git',
+                    #'private_key' => '/root/.ssh/id_ed25519',
                     'basedir' => environment_dir,
                     'invalid_branches' => 'correct_and_warn'
                   },
@@ -280,7 +280,6 @@ class Onceover
               logger.debug("Results Explained:")
               logger.debug("#{'(+)'.green} resource added or modified in `to`")
               logger.debug("#{'(-)'.red} resource removed or previous content in `from`")
-              @results ? logger.info("#{@results.count}") : logger.info("no results #{@results.count}")
               @results.each do |result|
                 puts "#{'Test:'.bold} #{result[:test].classes[0].name} on #{result[:test].nodes[0].name}"
                 puts "#{'Exit:'.bold} #{result[:exit_status]}"
@@ -291,7 +290,6 @@ class Onceover
                 puts "#{'Errors:'.bold}\n#{result[:stderr]}\n" if result[:exit_status] == 1
                 puts ''
               end
-              sleep (120)
               logger.info 'Cleanup temp environment directories'
               logger.debug "Processing removal: #{fromdir}"
               FileUtils.rm_r(fromdir)
