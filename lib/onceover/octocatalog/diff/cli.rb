@@ -44,9 +44,8 @@ class Onceover
               tests = test_config.run_filters(Onceover::Test.deduplicate(test_config.spec_tests))
 
               @queue = tests.inject(Queue.new, :push)
-              @results = []
-              @git_remote = []
-
+              @results = []    # collect octocatalog-diff output from each thread
+              @git_remote = [] # collect git checkout output
 
               logger.info('Provision temp working directories')
               environment_dir = Dir.mktmpdir('octo_diff_temp')
@@ -72,7 +71,6 @@ class Onceover
                    exit_status: exit_status.exitstatus,
                  }
                end
-
 
               # Create r10k_cache_dir
               logger.debug 'Creating a common r10k cache'
