@@ -91,8 +91,8 @@ class Onceover
                 #'cachedir' => environment_dir,
                 'sources' => {
                   'default' => {
-                    #'remote' => repo.root,
-                    'remote' => @git_remote[0][:stdout],
+                    'remote' => repo.root,
+                    # 'remote' => @git_remote[0][:stdout],
                     #'remote' => 'git@github.com:chambersmp/control-repo.git',
                     #'private_key' => '/root/.ssh/id_ed25519',
                     'basedir' => environment_dir,
