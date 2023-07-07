@@ -87,22 +87,6 @@ class Onceover
                 }
               }
               File.write("#{r10k_cache_dir}/r10k.yaml", r10k_config.to_yaml)
-
-              # # Copy all of the factsets over in reverse order so that
-              # # local ones override vendored ones
-              # logger.debug 'Deploying vendored factsets'
-              # deduped_factsets = repo.facts_files.reverse.inject({}) do |hash, file|
-              #   hash[File.basename(file)] = file
-              #   hash
-              # end
-              # logger.info('Copy vendored factsets to control-repos')
-              # deduped_factsets.each do |basename, path|
-              #   facts = JSON.load(File.read(path))
-              #   # Factsets are only read from todir, see command_args (--fact-file)
-              #   # File.open("#{fromdir}/spec/factsets/#{File.basename(path,'.*')}.yaml", 'w') { |f| f.write facts.to_yaml }
-              #   File.open("#{todir}/spec/factsets/#{File.basename(path, '.*')}.yaml", 'w') { |f| f.write facts.to_yaml }
-              # end
-
               # Set correct branch in bootstrap dirs
               # Not needed, pulled during r10k deploy
               # logger.debug "Check out #{opts[:from]} branch"
