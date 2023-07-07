@@ -55,13 +55,13 @@ class Onceover
               logger.debug "Temp r10k cache directory created at #{r10k_cache_dir}"
 
               # Create control repo to and from
-              logger.info("Provision temp environment: #{opts[:from]}")
+              logger.debug("Provision temp environment: #{opts[:from]}")
               fromdir = "#{environment_dir}/#{opts[:from]}"
-              logger.debug "Temp directory created at #{fromdir}"
+              logger.debug "Temp #{opts[:from]} directory created at #{fromdir}"
 
-              logger.info("Provision temp environment: #{opts[:to]}")
+              logger.debug("Provision temp environment: #{opts[:to]}")
               todir = "#{environment_dir}/#{opts[:to]}"
-              logger.debug "Temp directory created at #{todir}"
+              logger.debug "Temp #{opts[:to]} directory created at #{todir}"
 
                remote_cmd = "git checkout #{opts[:from]}; git checkout #{opts[:to]}" # checkout the `from` branch to ensure local repo has a reference for r10k
                Open3.popen3(remote_cmd) do |stdin, stdout, stderr, wait_thr|
@@ -76,7 +76,6 @@ class Onceover
 
               # Create r10k_cache_dir
               logger.debug 'Creating a common r10k cache'
-              # Cache dir no longer needed
               r10k_config = {
                 'cachedir' => r10k_cache_dir,
                 'sources' => {
