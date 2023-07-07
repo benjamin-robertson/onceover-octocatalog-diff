@@ -27,7 +27,7 @@ class Onceover
             DESCRIPTION
 
             flag nil, :display_source, 'Display the source class filename and line number for diffs'
-            flag nil, :color, 'Display logs in color (default false)'
+            flag nil, :no_color, 'Disable color for octocatalog-diff output'
             option :f,  :from, 'Branch to compare from', argument: :required
             option :t,  :to,   'Branch to compare to', argument: :required
 
@@ -174,7 +174,7 @@ class Onceover
                     
                     # flag: Whether the output should show the source file and fileline of the resource update.
                     display_source = opts[:display_source] ? '--display-source' : '--no-display-source'
-                    color = opts[:colors] ? '--color' : '--no-color'
+                    color = opts[:no_color] ? '--no-color' : '--color'
                     command_args = [
                       '--fact-file',
                       "#{todir}/spec/factsets/#{test.nodes[0].name}.yaml",
