@@ -62,6 +62,9 @@ class Onceover
               todir = "#{environment_dir}/#{opts[:to]}"
               logger.debug "Temp #{opts[:to]} directory created at #{todir}"
 
+              # TODO: Confirm if there is a better way to update git /ref/heads for repo.root to discover commit for `to` and `from`
+              # If either the `to` or `from` reference hasn't been checked out locally, r10k will fail to discover/deploy it.
+              # A simple git checkout for the `to` and `from` branch ensures the local repo is aware of /ref/heads and r10k can use them successfully.  
                remote_cmd = "git checkout #{opts[:from]}; git checkout #{opts[:to]}" # checkout the `from` branch to ensure local repo has a reference for r10k
                Open3.popen3(remote_cmd) do |stdin, stdout, stderr, wait_thr|
                  exit_status = wait_thr.value
