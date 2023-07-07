@@ -88,7 +88,7 @@ class Onceover
               }
               File.write("#{r10k_cache_dir}/r10k.yaml", r10k_config.to_yaml)
 
-              # Deploy Puppetfile in from
+              # Deploy environment in `from` temp environment
               logger.info "Deploying Puppetfile for #{opts[:from]} branch"
               r10k_cmd = "r10k deploy environment #{opts[:from]} --color --trace --modules --config #{r10k_cache_dir}/r10k.yaml"
               Open3.popen3(r10k_cmd) do |stdin, stdout, stderr, wait_thr|
@@ -101,7 +101,7 @@ class Onceover
                 end
               end
 
-              # Deploy Puppetfile in to
+              # Deploy environment in `to` temp environment
               logger.info "Deploying Puppetfile for #{opts[:to]} branch"
               r10k_cmd = "r10k deploy environment #{opts[:to]} --color --trace --modules --config #{r10k_cache_dir}/r10k.yaml"
               Open3.popen3(r10k_cmd) do |stdin, stdout, stderr, wait_thr|
@@ -114,7 +114,6 @@ class Onceover
                 end
               end
 
-              # Move beneath deploy of environments
               # Copy all of the factsets over in reverse order so that
               # local ones override vendored ones
               logger.debug 'Deploying vendored factsets'
@@ -170,7 +169,8 @@ class Onceover
 
                     command_prefix = ENV['BUNDLE_GEMFILE'] ? 'bundle exec ' : ''
                     bootstrap_env = "--bootstrap-environment GEM_HOME=#{ENV['GEM_HOME']}" if ENV['GEM_HOME']
-                    # Whether the output should show the source file and fileline of the update.
+                    
+                    # flag: Whether the output should show the source file and fileline of the resource update.
                     display_source = opts[:display_source] ? '--display-source' : '--no-display-source'
 
                     command_args = [
