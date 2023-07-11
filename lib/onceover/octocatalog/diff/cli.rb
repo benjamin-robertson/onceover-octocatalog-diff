@@ -248,12 +248,18 @@ class Onceover
               def print_summary_table
                 @results.sort_by { |result| [result[:test][:node]] }
                 require 'table_print'
-                states = { 0 => 'no diff', 1 => 'failed', 2 => 'changed' }
+                states = { 0 => 'no differences', 1 => 'failed', 2 => 'changes' }
 
                 tp.set :max_width, 200
-                tp @results, { name: lambda {|result| result[:test][:node]} }, { class: lambda { |result| result[:test][:class]} }, { state: lambda { |result| states[result[:exit_status]]} }
+                tp @results, 
+                  { name: lambda { |result| result[:test][:node]} }, 
+                  { class: lambda { |result| result[:test][:class]} }, 
+                  { state: lambda { |result| states[result[:exit_status]]} }, 
+                  { add: lambda { |result| result[:stdout].scan(/\+ /).length} }, 
+                  { remove: lambda { |result| result[:stdout].scan(/- /).length} } 
                 puts ''
               end
+             
               print_summary_table
               
 
