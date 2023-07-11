@@ -222,6 +222,7 @@ class Onceover
               logger.debug("#{'(+)'.green} resource added or modified in `to`")
               logger.debug("#{'(-)'.red} resource removed or previous content in `from`")
               # TODO: Determine method of different output formatters table, pretty
+              
               @results.each do |result|
                 if opts[:no_color]
                   puts "#{'Test:'} #{result[:test][:class]} on #{result[:test][:node]}"
@@ -243,6 +244,19 @@ class Onceover
                   puts ''
                 end
               end
+
+              def print_summary_table
+                @results.sort_by { |result| [result[:test][:node]] }
+                require 'table_print'
+                states = { 0 => 'no diff', 1 => 'failed', 2 => 'changed' }
+
+                tp.set :max_width, 200
+                tp @results, { name: lambda {|result| result[:test][:node]} }, { class: lambda { |result| result[:test][:class]} }, { state: lambda { |result| states[result[:exit_status]]} }
+                puts ''
+              end
+              print_summary_table
+              
+
               logger.info 'Cleanup temp environment directories'
               logger.debug "Processing removal: #{fromdir}"
               FileUtils.rm_r(fromdir)
