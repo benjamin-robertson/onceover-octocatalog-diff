@@ -262,7 +262,7 @@ class Onceover
              
               print_summary_table
               
-
+              puts '<p style="color:DodgerBlue;">Lorem ipsum...</p>'
               logger.info 'Cleanup temp environment directories'
               logger.debug "Processing removal: #{fromdir}"
               FileUtils.rm_r(fromdir)
