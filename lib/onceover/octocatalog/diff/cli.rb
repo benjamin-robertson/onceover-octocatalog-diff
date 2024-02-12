@@ -81,6 +81,9 @@ class Onceover
               logger.debug 'Creating a common r10k cache'
               r10k_config = {
                 'cachedir' => r10k_cache_dir,
+                'forge' => {
+                  'allow_puppetfile_override' => true
+                },
                 'sources' => {
                   'default' => {
                     'remote' => repo.root,
