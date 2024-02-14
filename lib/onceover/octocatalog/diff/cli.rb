@@ -193,7 +193,7 @@ class Onceover
                       '--hiera-config',
                       repo.hiera_config_file,
                       '--pass-env-vars',
-                      ENV.keys.keep_if { |k| k =~ /^RUBY|^BUNDLE|^PUPPET/ }.join(','),
+                      ENV.keys.keep_if { |k| k =~ /^RUBY|^BUNDLE|^PUPPET|^PATH|^GEM/ }.join(','),
                       bootstrap_env,
                       display_detail_add,
                       display_source,
