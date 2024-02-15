@@ -135,6 +135,12 @@ class Onceover
                 File.open("#{todir}/spec/factsets/#{File.basename(path, '.*')}.yaml", 'w') { |f| f.write facts.to_yaml }
               end
 
+              # Copy hiera_octo to and from dir.
+              # nasty system method will fix this later.
+              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}")
+              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{todir}")
+              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}")
+              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{todir}")
 
               @threads = Array.new(num_threads) do
                 Thread.new do
