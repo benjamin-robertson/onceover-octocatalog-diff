@@ -190,6 +190,8 @@ class Onceover
                       '--puppet-binary',
                       binary,
                       color,
+                      '--hiera-path-strip',
+                      './',
                       '--hiera-config',
                       repo.hiera_config_file,
                       '--pass-env-vars',
