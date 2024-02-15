@@ -137,10 +137,10 @@ class Onceover
 
               # Copy hiera_octo to and from dir.
               # nasty system method will fix this later.
-              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}")
-              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{todir}")
-              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}")
-              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{todir}")
+              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}/hiera.yaml")
+              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{todir}/hiera.yaml")
+              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}/hiera.yaml")
+              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{todir}/hiera.yaml")
 
               @threads = Array.new(num_threads) do
                 Thread.new do
