@@ -49,6 +49,9 @@ class Onceover
               @results = []    # collect octocatalog-diff output from each thread
               @git_remote = [] # collect git checkout output
 
+              # get copy of hiera_octo
+              system("/bin/cp -f /repo/spec/hiera_octo.yaml /root/hiera_octo.yaml")
+
               logger.info('Provision temp working directories')
               environment_dir = Dir.mktmpdir('octo_diff_temp')
               logger.debug "Temp environment directory created at #{environment_dir}"
@@ -137,10 +140,10 @@ class Onceover
 
               # Copy hiera_octo to and from dir.
               # nasty system method will fix this later.
-              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}/hiera.yaml")
-              logger.debug ("Copy files to /bin/cp -f /repo/spec/hiera_octo.yaml #{todir}/hiera.yaml")
-              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{fromdir}/hiera.yaml")
-              system("/bin/cp -f /repo/spec/hiera_octo.yaml #{todir}/hiera.yaml")
+              logger.debug ("Copy files to /bin/cp -f /root/hiera_octo.yaml #{fromdir}/hiera.yaml")
+              logger.debug ("Copy files to /bin/cp -f /root/hiera_octo.yaml #{todir}/hiera.yaml")
+              system("/bin/cp -f /root/hiera_octo.yaml #{fromdir}/hiera.yaml")
+              system("/bin/cp -f /root/hiera_octo.yaml #{todir}/hiera.yaml")
 
               @threads = Array.new(num_threads) do
                 Thread.new do
